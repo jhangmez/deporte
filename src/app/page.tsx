@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
@@ -12,8 +10,8 @@ export default function Home() {
         <Header />
       </div>
 
-      <div className='bg-light-surface dark:bg-dark-surface'>
-        <ListarProductos />
+      <div className='bg-light-surface dark:bg-dark-surface h-screen'>
+        {/* <ListarProductos /> */}
       </div>
 
       <div className='bg-light-surface dark:bg-dark-surface'>
