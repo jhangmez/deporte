@@ -24,14 +24,17 @@ export default function Header() {
             />
             <div>
               <span className='text-light-onSurface dark:text-dark-onSurface text-2xl font-bold leading-[44px]'>
-                Deporte
+                In
               </span>
               <span className='text-light-primary dark:text-dark-primary text-2xl font-bold leading-[44px]'>
-                Industria
+                Deportiva
               </span>
             </div>
           </Link>
           <div className='lg:hidden flex flex-row items-center gap-2.5'>
+            <Link href='/login'>
+              <Iconbutton icon='mdi:arrow-collapse-right' />
+            </Link>
             <div onClick={() => setNavbarOpen(!navbarOpen)}>
               <Iconbutton icon='material-symbols:menu' />
             </div>
@@ -47,12 +50,17 @@ export default function Header() {
           <ul className='flex flex-col lg:flex-row list-none lg:ml-auto gap-2 mb-2'>
             <li className='nav-item'>
               <Link href='/skills'>
-                <Textbutton label='Skills' />
+                <Textbutton label='Nosotros' />
               </Link>
             </li>
             <li className='nav-item'>
-              <Link href='/experiencia'>
-                <Textbutton label='Experiencia' />
+              <Link href='/login'>
+                <Textbutton label='Ingresar Sesion' />
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link href='/register'>
+                <Textbutton label='Registrar' />
               </Link>
             </li>
           </ul>

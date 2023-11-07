@@ -26,10 +26,10 @@ export default function FooterWithSocialMediaIcons() {
               />
               <div>
                 <span className='text-light-onSurface dark:text-dark-onSurface text-2xl font-bold leading-[44px]'>
-                  deporte
+                  In
                 </span>
                 <span className='text-light-primary dark:text-dark-primary text-2xl font-bold leading-[44px]'>
-                  Industria
+                  Deportiva
                 </span>
               </div>
             </Link>
