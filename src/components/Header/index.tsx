@@ -17,7 +17,7 @@ export default function Header() {
             className='w-[230px] h-14 justify-start items-center gap-[5px] inline-flex'
           >
             <Icon
-              icon='material-symbols:store'
+              icon='icon-park-outline:sport'
               width='28'
               height='28'
               className='text-light-onSurface dark:text-dark-onSurface'

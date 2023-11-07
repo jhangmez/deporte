@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
-import Producto from '@components/Producto'
+import Players from '@components/Players'
 
 export default function Page({ params }: { params: { slug: string } }) {
   return (
@@ -10,7 +10,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         <Header />
       </div>
       <div className='bg-light-surface dark:bg-dark-surface'>
-        <Producto slug={params.slug} />
+        <Players slug={params.slug} />
       </div>
 
       <div className='bg-light-surface dark:bg-dark-surface'>

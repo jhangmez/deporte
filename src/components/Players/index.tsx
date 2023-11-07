@@ -1,12 +1,12 @@
 'use client'
 
 import Swiper from '@components/Swiper'
-import productsData from '@utils/products.json'
+import playersData from '@utils/players.json'
 import { notFound } from 'next/navigation'
 
 export default function Producto({ slug }: { slug: string }) {
   const id = slug
-  const producto = productsData.find((product) => product.id === id)
+  const players = playersData.find((players) => players.id === id)
   const items = [
     {
       imageSrc:
@@ -31,48 +31,45 @@ export default function Producto({ slug }: { slug: string }) {
   ]
 
   // Si el producto no existe, se retorna un error 404.
-  if (!producto) {
+  if (!players) {
     return notFound()
   }
 
   return (
     <div className='container mx-auto lg:px-16 '>
-      <div className='px-2 h-auto text-2xl text-light-primary dark:text-dark-primary font-bold mb-5 px-6 lg:px-0'>
-        {producto?.nombre}
+      <div className='px-2 h-auto text-2xl text-light-primary dark:text-dark-primary font-bold mb-1 px-6 lg:px-0'>
+        {players?.nombre} {players?.apellidoap}
+      </div>
+      <div className='px-2 h-auto text-2xl text-light-primary dark:text-dark-primary font-bold mb-1 px-6 lg:px-0'>
+        {players?.deporte}
       </div>
       <div className='flex h-full flex-col lg:flex-row justify-center px-6 lg:px-0 gap-10'>
         <Swiper items={items} />
         <div className='text-light-onSurface dark:text-dark-onSurface'>
-          <div>Id del producto: {producto?.id}</div>
+          <div>Id del jugador: {players?.id}</div>
 
           <div>
-            Fabricante:
             <p className='text-light-primary dark:text-dark-primary font-bold'>
-              {producto?.fabricante}
+              {players?.deporte}
             </p>
           </div>
 
           <div>
-            Stock:
-            <p className='text-light-primary dark:text-dark-primary font-bold'>
-              {producto?.stock}
-            </p>
+            <p className='text-light-primary dark:text-dark-primary font-bold'></p>
           </div>
           <div>
-            Precio en dólares:{' '}
             <p className='text-light-primary dark:text-dark-primary font-bold'>
-              $ {producto?.preciodolares}
-            </p>
-          </div>
-          <div>
-            Precio en soles:{' '}
-            <p className='text-light-primary dark:text-dark-primary font-bold'>
-              S/ {producto?.preciosoles}
+              {players?.posicion}
             </p>
           </div>
           <div>
             <p className='text-light-primary dark:text-dark-primary font-bold'>
-              {producto?.descuento ? 'Con descuento' : ''}
+              {players?.club}
+            </p>
+          </div>
+          <div>
+            <p className='text-light-primary dark:text-dark-primary font-bold'>
+              {players.club ? 'Con club' : ''}
             </p>
           </div>
         </div>
@@ -81,7 +78,7 @@ export default function Producto({ slug }: { slug: string }) {
         Descripcion
       </div>
       <div className='text-1xl text-light-onPrimaryContainer dark:text-dark-onPrimaryContainer '>
-        {producto?.descripcion}
+        {players?.posicion}
       </div>
     </div>
   )
