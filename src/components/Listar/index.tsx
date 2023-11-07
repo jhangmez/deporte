@@ -8,6 +8,9 @@ export default function Listar() {
   return (
     <div className='container mx-auto lg:px-16'>
       <div className='flex h-full flex-col justify-center px-3 lg:px-0'>
+        <div className='pt-10 h-auto text-4xl text-light-primary dark:text-dark-primary font-bold'>
+          Jugadores Tendencia
+        </div>
         <div className='flex flex-col lg:flex-row justify-between items-center inline-flex py-10 gap-5 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2'>
           {playersData.map((players, index) => (
             <Link
