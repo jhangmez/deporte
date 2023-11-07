@@ -74,10 +74,11 @@ export default function Producto({ slug }: { slug: string }) {
           </div>
         </div>
       </div>
-      <div className='text-2xl text-light-primary dark:text-dark-primary font-bold'>
+
+      <div className='px-2 h-auto text-2xl text-light-primary dark:text-dark-primary font-bold px-6 lg:px-0'>
         Descripcion
       </div>
-      <div className='text-1xl text-light-onPrimaryContainer dark:text-dark-onPrimaryContainer '>
+      <div className='text-1xl text-light-onPrimaryContainer dark:text-dark-onPrimaryContainer px-6 lg:px-0'>
         {players?.posicion}
       </div>
     </div>

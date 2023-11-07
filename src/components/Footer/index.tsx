@@ -16,7 +16,7 @@ export default function FooterWithSocialMediaIcons() {
           <div className='mb-6 md:mb-0'>
             <Link
               href='/'
-              className='w-[230px] h-14 justify-start items-center gap-[5px] inline-flex'
+              className='w-fit h-14 justify-start items-center gap-[5px] inline-flex'
             >
               <Icon
                 icon='icon-park-outline:sport'
@@ -34,7 +34,7 @@ export default function FooterWithSocialMediaIcons() {
               </div>
             </Link>
           </div>
-          <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2'>
+          <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
             <div>
               <h2 className='mb-6 text-sm font-semibold uppercase text-light-onSurface dark:text-dark-onSurface'>
                 Social
@@ -62,17 +62,34 @@ export default function FooterWithSocialMediaIcons() {
             </div>
             <div>
               <h2 className='mb-6 text-sm font-semibold uppercase text-light-onSurface dark:text-dark-onSurface'>
-                Proyectos
+                Legal
               </h2>
-              <ul className='text-gray-500 dark:text-gray-400 font-medium'>
+              <ul className='font-medium text-gray-500 dark:text-gray-400'>
+                <li className='mb-4'>
+                  <Link href='/' className='hover:underline' target='_blank'>
+                    Pol&iacute;tica de privacidad
+                  </Link>
+                </li>
+                <li>
+                  <Link href='/' className='hover:underline' target='_blank'>
+                    T&eacute;rms & Condiciones
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className='mb-6 text-sm font-semibold uppercase text-light-onSurface dark:text-dark-onSurface'>
+                Nosotros
+              </h2>
+              <ul className='font-medium text-gray-500 dark:text-gray-400'>
                 <li className='mb-4'>
                   <Link
                     href={VercelHarkaysoft}
-                    className='hover:underline'
                     target='_blank'
+                    className='hover:underline'
                   >
                     <span
-                      className={`${myFont.className} self-center text-1xl whitespace-nowrap pb-3`}
+                      className={`${myFont.className} self-center text-1xl whitespace-nowrap dark:text-white pb-3`}
                     >
                       Harkay
                       <span

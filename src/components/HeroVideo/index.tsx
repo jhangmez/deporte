@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import Textbutton from '@Buttons/Text'
+import Filledbutton from '@Buttons/Filled'
 
 export default function HeroVideo() {
   return (
-    <div className='relative h-[500px] md:h-[700px]'>
+    <div className='relative h-[600px] md:h-[700px]'>
       <video
         autoPlay
         loop
@@ -36,6 +38,13 @@ export default function HeroVideo() {
             Demuestra las habilidades deportivas de tu infante para encontrar
             inversores que ayuden a desarrollar su potencial.
           </div>
+
+          <Link href='/register'>
+            <Filledbutton label='Registrar ahora' />
+          </Link>
+          <Link href='/login'>
+            <Textbutton label='Ingresar sesión' />
+          </Link>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default function Header() {
         <div className='w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start'>
           <Link
             href='/'
-            className='w-[230px] h-14 justify-start items-center gap-[5px] inline-flex'
+            className='w-fit h-14 justify-start items-center gap-[5px] inline-flex'
           >
             <Icon
               icon='icon-park-outline:sport'

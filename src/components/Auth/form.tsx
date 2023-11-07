@@ -58,7 +58,7 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
           })
         }
       }}
-      className='flex flex-col space-y-4 px-4 py-8 sm:px-16 bg-light-surface dark:bg-dark-surface'
+      className='flex flex-col space-y-4 px-4 py-8 sm:px-16 bg-light-surfaceContainer dark:bg-dark-surfaceContainer'
     >
       <div>
         <label
