@@ -8,8 +8,8 @@ import { Suspense } from 'react'
 
 const myFont = localFont({ src: './Tektur-VariableFont_wdth,wght.ttf' })
 
-const title = 'Ronal | Tienda virtual'
-const description = 'Tienda virtual'
+const title = 'Inicio | Deporte industria'
+const description = 'Deporte industria'
 
 export const metadata: Metadata = {
   title,

@@ -24,10 +24,10 @@ export default function Header() {
             />
             <div>
               <span className='text-light-onSurface dark:text-dark-onSurface text-2xl font-bold leading-[44px]'>
-                ronal
+                Deporte
               </span>
               <span className='text-light-primary dark:text-dark-primary text-2xl font-bold leading-[44px]'>
-                Tienda
+                Industria
               </span>
             </div>
           </Link>
