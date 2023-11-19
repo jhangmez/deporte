@@ -212,17 +212,15 @@ export default function App() {
         <p>Error</p>
       ) : (
         data?.todos.map((user) => (
-          <>
-            <div key={user.id}>
-              <br></br>
-              {user.email}
-              <br></br>
-              {user.phonenumber}
-              <br></br>
-              {user.perinfId}
-              <br></br>
-            </div>
-          </>
+          <div key={user.id}>
+            <br></br>
+            {user.email}
+            <br></br>
+            {user.phonenumber}
+            <br></br>
+            {user.perinfId}
+            <br></br>
+          </div>
         ))
       )}
     </main>

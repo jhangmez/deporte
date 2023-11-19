@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
-import ListarTendecia from '@components/Listar/Tendencia'
 import ListarFutbol from '@components/Listar/Futbol'
 import ListarSinclub from '@components/Listar/Sinclub'
 import ListarClubes from '@components/Listar/Clubes'
@@ -16,9 +15,7 @@ export default function Home() {
       <div className='bg-light-surface dark:bg-dark-surface'>
         <HeroVideo />
       </div>
-      <div className='bg-light-surface dark:bg-dark-surface'>
-        <ListarTendecia />
-      </div>
+
       <div className='bg-light-surface dark:bg-dark-surface'>
         <ListarFutbol />
       </div>
