@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react'
 import { SwiperItemType } from '@typescustom/swipertypes'
 import SwiperItem from './SwiperItem'
 
-import { getRefValue, useStateRef } from '@lib/hooks'
-import { getTouchEventData } from '@lib/dom'
+import { getRefValue, useStateRef } from '../../app/lib/hooks'
+import { getTouchEventData } from '../../app/lib/dom'
 
 // import './Swiper.css'
 

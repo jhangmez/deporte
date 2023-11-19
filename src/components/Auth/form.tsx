@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
-import Filledbutton from '@Buttons/Filled'
 import toast from 'react-hot-toast'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -111,7 +110,7 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
           >
             Estoy de acuerdo con los {''}
             <Link
-              href='/'
+              href='/termscond'
               className='text-light-primary dark:text-dark-primary hover:underline '
             >
               términos y condiciones

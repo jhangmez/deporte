@@ -24,7 +24,7 @@
       "@public/*": ["./public/*"],
       "@routes": ["./src/routes/index.tsx"],
       "@typescustom/*": ["./src/types/*"],
-      "@lib/*": ["./lib/*"],
+      "@lib/*": ["./src/app/lib/*"],
       "@utils/*": ["./src/utils/*"]
     }
   },

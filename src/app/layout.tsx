@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import { Providers } from './providers'
 import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'react-hot-toast'
 import AuthStatus from '@components/Auth/auth-status'
@@ -31,13 +32,15 @@ export default function RootLayout({
       <body
         className={`${myFont.className} selection:bg-light-primary selection:text-light-onPrimary dark:selection:bg-dark-primary dark:selection:text-dark-onPrimary`}
       >
-        <Toaster />
-        <Suspense fallback='Loading...'>
-          <AuthStatus />
-        </Suspense>
-        <noscript>Página realizada por @jhangmez de HarkaySoft</noscript>
-        {children}
-        <Analytics />
+        <Providers>
+          <Toaster />
+          <Suspense fallback='Loading...'>
+            <AuthStatus />
+          </Suspense>
+          <noscript>Página realizada por @jhangmez de HarkaySoft</noscript>
+          {children}
+          <Analytics />
+        </Providers>
       </body>
     </html>
   )

@@ -1,9 +1,12 @@
 import { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import prisma from '@lib/prisma'
+import prisma from '../../../lib/prisma/prisma'
 import { compare } from 'bcrypt'
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    maxAge: 60 * 60 * 2
+  },
   providers: [
     CredentialsProvider({
       credentials: {
