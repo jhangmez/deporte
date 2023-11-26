@@ -1,12 +1,25 @@
-import { gql } from '@lib/gql'
+import { gql } from '../../gql'
 
-export const getTodosQuery = gql(/* GraphQL */ `
+export const AllUsers = gql(/* GraphQL */ `
   query Query {
-    todos {
+    allUsers {
       id
+      name
       email
-      perinfId
-      phonenumber
+    }
+  }
+`)
+
+export const me = gql(/* GraphQL */ `
+  query Query {
+    me {
+      id
+      name
+      email
+      profile {
+        id
+        bio
+      }
     }
   }
 `)

@@ -14,51 +14,150 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+  DateTime: { input: any; output: any; }
+};
+
+export type AuthPayload = {
+  __typename?: 'AuthPayload';
+  token?: Maybe<Scalars['String']['output']>;
+  user?: Maybe<User>;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  addProfileForUser?: Maybe<Profile>;
+  createDraft?: Maybe<Post>;
+  deletePost?: Maybe<Post>;
+  incrementPostViewCount?: Maybe<Post>;
+  login?: Maybe<AuthPayload>;
+  signup?: Maybe<AuthPayload>;
+  togglePublishPost?: Maybe<Post>;
+};
+
+
+export type MutationAddProfileForUserArgs = {
+  bio?: InputMaybe<Scalars['String']['input']>;
+  userUniqueInput: UserUniqueInput;
+};
+
+
+export type MutationCreateDraftArgs = {
+  data: PostCreateInput;
+};
+
+
+export type MutationDeletePostArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationIncrementPostViewCountArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationLoginArgs = {
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
+
+export type MutationSignupArgs = {
+  email: Scalars['String']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  password: Scalars['String']['input'];
+};
+
+
+export type MutationTogglePublishPostArgs = {
+  id: Scalars['Int']['input'];
+};
+
+export type Post = {
+  __typename?: 'Post';
+  author?: Maybe<User>;
+  content?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['Int']['output'];
+  published: Scalars['Boolean']['output'];
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  viewCount: Scalars['Int']['output'];
+};
+
+export type PostCreateInput = {
+  content?: InputMaybe<Scalars['String']['input']>;
+  title: Scalars['String']['input'];
+};
+
+export type PostOrderByUpdatedAtInput = {
+  updatedAt: SortOrder;
+};
+
+export type Profile = {
+  __typename?: 'Profile';
+  bio?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  user?: Maybe<User>;
 };
 
 export type Query = {
   __typename?: 'Query';
-  todos: Array<User>;
+  allUsers: Array<User>;
+  draftsByUser?: Maybe<Array<Maybe<Post>>>;
+  feed: Array<Post>;
+  me?: Maybe<User>;
+  postById?: Maybe<Post>;
 };
 
+
+export type QueryDraftsByUserArgs = {
+  userUniqueInput: UserUniqueInput;
+};
+
+
+export type QueryFeedArgs = {
+  orderBy?: InputMaybe<PostOrderByUpdatedAtInput>;
+  searchString?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryPostByIdArgs = {
+  id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum SortOrder {
+  Asc = 'asc',
+  Desc = 'desc'
+}
+
 export type User = {
-  __typename?: 'user';
+  __typename?: 'User';
   email: Scalars['String']['output'];
   id: Scalars['Int']['output'];
-  perinfId: Scalars['Int']['output'];
-  phonenumber: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  posts: Array<Post>;
+  profile?: Maybe<Profile>;
+};
+
+export type UserCreateInput = {
+  email: Scalars['String']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  posts?: InputMaybe<Array<PostCreateInput>>;
+};
+
+export type UserUniqueInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type QueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type QueryQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'user', id: number, email: string, perinfId: number, phonenumber: string }> };
+export type QueryQuery = { __typename?: 'Query', allUsers: Array<{ __typename?: 'User', id: number, name?: string | null, email: string }> };
 
 
-export const QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Query"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"todos"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"perinfId"}},{"kind":"Field","name":{"kind":"Name","value":"phonenumber"}}]}}]}}]} as unknown as DocumentNode<QueryQuery, QueryQueryVariables>;
-/** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-};
-
-export type Query = {
-  __typename?: 'Query';
-  todos: Array<User>;
-};
-
-export type User = {
-  __typename?: 'user';
-  email: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
-  perinfId: Scalars['Int']['output'];
-  phonenumber: Scalars['String']['output'];
-};
-
-export type QueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type QueryQuery = { __typename?: 'Query', todos: Array<{ __typename?: 'user', id: number, email: string, perinfId: number, phonenumber: string }> };
+export const QueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Query"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allUsers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<QueryQuery, QueryQueryVariables>;

@@ -123,21 +123,6 @@ const config: Config = {
       }
     }
   },
-  darkMode: 'class',
-  plugins: [
-    nextui({
-      themes: {
-        dark: {
-          colors: {
-            primary: {
-              DEFAULT: '#6d5e00',
-              foreground: '#ffffff'
-            },
-            focus: '#BEF264'
-          }
-        }
-      }
-    })
-  ]
+  plugins: [nextui()]
 }
 export default config

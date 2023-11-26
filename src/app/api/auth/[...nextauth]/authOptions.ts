@@ -1,11 +1,17 @@
 import { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import prisma from '../../../lib/prisma/prisma'
-import { compare } from 'bcrypt'
+import axios from 'axios'
 
 export const authOptions: NextAuthOptions = {
   session: {
+    maxAge: 60 * 60 * 2,
+    strategy: 'jwt'
+  },
+  jwt: {
+    // The maximum age of the NextAuth.js issued JWT in seconds.
+    // Defaults to `session.maxAge`.
     maxAge: 60 * 60 * 2
+    // You can define your own encode/decode functions for signing and encryption
   },
   providers: [
     CredentialsProvider({
@@ -18,21 +24,51 @@ export const authOptions: NextAuthOptions = {
         if (!email || !password) {
           throw new Error('Falta nombre de usuario o contraseña')
         }
-        const user = await prisma.user.findUnique({
-          where: {
+
+        const response = await axios.post('http://localhost:4000/', {
+          query: `
+      mutation Login($loginEmail: String!, $loginPassword: String!) {
+        login(email: $loginEmail, password: $loginPassword) {
+          token
+          user {
+            id
+            name
             email
           }
-        })
-        // if user doesn't exist or password doesn't match
-        if (!user || !(await compare(password, user.password))) {
-          throw new Error('Usuario o contraseña inválido')
-        }
-        return {
-          id: user.id.toString(),
-          email: user.email,
-          password: user.password
         }
       }
+    `,
+          variables: {
+            loginEmail: email,
+            loginPassword: password
+          }
+        })
+
+        const data = response.data
+
+        if (data.errors) {
+          throw new Error('Error en la autenticación')
+        }
+        if (data.data.login) {
+          return {
+            email: data.data.login.user.email,
+            name: data.data.login.user.name,
+            id: data.data.login.user.id,
+            accessToken: data.data.login.token
+          }
+        }
+        // Return null if user data could not be retrieved
+        return null
+      }
     })
-  ]
+  ],
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user }
+    },
+    async session({ session, token }) {
+      session.user = token as any
+      return session
+    }
+  }
 }

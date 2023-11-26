@@ -1,13 +1,13 @@
 // app/providers.tsx
 'use client'
 
-import { NextUIProvider } from '@nextui-org/react'
+import { SessionProvider } from 'next-auth/react'
 import { ApolloWrapper } from '@lib/graphql'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ApolloWrapper>
-      <NextUIProvider>{children}</NextUIProvider>
-    </ApolloWrapper>
+    <SessionProvider>
+      <ApolloWrapper>{children}</ApolloWrapper>
+    </SessionProvider>
   )
 }

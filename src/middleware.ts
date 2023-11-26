@@ -14,6 +14,7 @@ export default async function middleware(req: NextRequest) {
     req,
     secret: process.env.NEXTAUTH_SECRET
   })
+  // console.log('session de middleware: ', session?.accessToken)
 
   if (!session && path === '/home') {
     return NextResponse.redirect(new URL('/login', req.url))
