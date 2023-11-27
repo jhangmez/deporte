@@ -12,3 +12,11 @@ export const Login = gql(/* GraphQL */ `
     }
   }
 `)
+
+export const Signup = gql(`
+  mutation Mutation($email: String!, $password: String!, $name: String) {
+  signup(email: $email, password: $password, name: $name) {
+    token
+  }
+}
+`)

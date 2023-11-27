@@ -39,7 +39,9 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
             },
             body: JSON.stringify({
               email: e.currentTarget.email.value,
-              password: e.currentTarget.password.value
+              password: e.currentTarget.password.value,
+              // @ts-ignore
+              name: e.currentTarget.name.value
             })
           }).then(async (res) => {
             setLoading(false)
@@ -92,6 +94,24 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
           className='mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm'
         />
       </div>
+      {type === 'register' && (
+        <div>
+          <label
+            htmlFor='Nombre'
+            className='block text-xs text-light-onSurface dark:text-dark-onSurface uppercase'
+          >
+            Nombre
+          </label>
+          <input
+            id='name'
+            name='name'
+            type='text'
+            placeholder='Nombre'
+            required
+            className='mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm'
+          />
+        </div>
+      )}
 
       {type === 'register' && (
         <div className='flex items-start mb-6'>

@@ -1,23 +1,38 @@
-import prisma from '../../../lib/prisma/prisma'
 import { hash } from 'bcrypt'
 import { NextResponse } from 'next/server'
+import { useMutation } from '@apollo/client'
+import { Signup } from '@lib/graphql/mutation'
+import axios from 'axios'
 
 export async function POST(req: Request) {
-  const { email, password } = await req.json()
-  const exists = await prisma.user.findUnique({
-    where: {
-      email
+  const { email, password, name } = await req.json()
+
+  const graphqlUrl = process.env.NEXT_PUBLIC_GRAPHQL
+  if (!graphqlUrl) {
+    throw new Error(
+      'The NEXT_PUBLIC_GRAPHQL environment variable is not defined'
+    )
+  }
+
+  const response = await axios.post(graphqlUrl, {
+    query: `
+    mutation Mutation($email: String!, $password: String!, $name: String!) {
+      signup(email: $email, password: $password, name: $name) {
+        token
+      }
+    }
+    `,
+    variables: {
+      email: email,
+      password: password,
+      name: name
     }
   })
-  if (exists) {
+
+  const user = response.data
+  if (user.errors) {
     return NextResponse.json({ error: 'El usuario ya existe' }, { status: 400 })
-  } else {
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password: await hash(password, 10)
-      }
-    })
-    return NextResponse.json(user)
   }
+
+  return NextResponse.json(user)
 }

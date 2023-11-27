@@ -25,7 +25,13 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Falta nombre de usuario o contraseña')
         }
 
-        const response = await axios.post('http://localhost:4000/', {
+        const graphqlUrl = process.env.NEXT_PUBLIC_GRAPHQL
+        if (!graphqlUrl) {
+          throw new Error(
+            'The NEXT_PUBLIC_GRAPHQL environment variable is not defined'
+          )
+        }
+        const response = await axios.post(graphqlUrl, {
           query: `
       mutation Login($loginEmail: String!, $loginPassword: String!) {
         login(email: $loginEmail, password: $loginPassword) {
