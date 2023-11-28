@@ -5,12 +5,11 @@ import { Link } from '@nextui-org/react'
 import { Button } from '@nextui-org/button'
 import Header from '@components/Header/into'
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/react'
-import { AllUsers } from '@lib/graphql/query'
+import { AllUsers, Myself } from '@lib/graphql/query'
 import { Skeleton } from '@nextui-org/skeleton'
 export default function App() {
-  const { loading, error, data, refetch } = useQuery(AllUsers)
-
+  // const { loading, error, data, refetch } = useQuery(AllUsers)
+  const { loading, error, data, refetch } = useQuery(Myself)
   return (
     <main className='bg-light-surface dark:bg-dark-surface'>
       <Header />
@@ -23,31 +22,34 @@ export default function App() {
       </Button>
       {loading ? (
         <div className='max-w-[300px] w-full flex items-center gap-3'>
-          <div>
-            <Skeleton className='flex rounded-full w-12 h-12' />
-          </div>
           <div className='w-full flex flex-col gap-2'>
+            <Skeleton />
+            <Skeleton className='h-3 w-4/5 rounded-lg' />
             <Skeleton className='h-3 w-3/5 rounded-lg' />
             <Skeleton className='h-3 w-4/5 rounded-lg' />
           </div>
         </div>
       ) : error ? (
-        <p>Error</p>
+        <p className='text-light-onSurface dark:text-dark-onSurface'>
+          Error {error.message}
+        </p>
       ) : (
-        data?.allUsers.map((user) => (
-          <div
-            key={user.id}
-            className='text-light-onSurface dark:text-dark-onSurface'
-          >
-            <br></br>
-            {user.email}
-            <br></br>
-            {user.id}
-            <br></br>
-            {user.name}
-            <br></br>
-          </div>
-        ))
+        <div
+          key={data?.me?.id}
+          className='text-light-onSurface dark:text-dark-onSurface'
+        >
+          <br></br>
+          {data?.me?.email}
+          <br></br>
+          {data?.me?.id}
+          <br></br>
+          {data?.me?.name}
+          <br></br>
+          {data?.me?.profile?.bio}
+          <br></br>
+          {data?.me?.profile?.id}
+          <br></br>
+        </div>
       )}
     </main>
   )

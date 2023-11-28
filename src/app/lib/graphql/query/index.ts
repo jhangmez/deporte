@@ -1,7 +1,7 @@
 import { gql } from '../../gql'
 
 export const AllUsers = gql(/* GraphQL */ `
-  query Query {
+  query AllUsers {
     allUsers {
       id
       name
@@ -10,8 +10,8 @@ export const AllUsers = gql(/* GraphQL */ `
   }
 `)
 
-export const me = gql(/* GraphQL */ `
-  query Query {
+export const Myself = gql(/* GraphQL */ `
+  query Me {
     me {
       id
       name

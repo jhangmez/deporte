@@ -4,8 +4,7 @@ import axios from 'axios'
 
 export const authOptions: NextAuthOptions = {
   session: {
-    maxAge: 60 * 60 * 2,
-    strategy: 'jwt'
+    maxAge: 60 * 60 * 2
   },
   jwt: {
     // The maximum age of the NextAuth.js issued JWT in seconds.

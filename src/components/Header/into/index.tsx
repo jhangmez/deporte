@@ -19,11 +19,15 @@ import {
   Avatar
 } from '@nextui-org/react'
 import { Icon } from '@iconify/react'
+import { Skeleton } from '@nextui-org/skeleton'
 
 import SignOut from '@components/Auth/sign-out'
+import { useQuery } from '@apollo/client'
+import { Myself } from '@lib/graphql/query'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const { loading, error, data, refetch } = useQuery(Myself)
 
   const menuItems = [
     'Profile',
@@ -42,7 +46,7 @@ export default function Header() {
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
-      className='bg-light-tertiary dark:bg-dark-tertiary'
+      className='bg-light-onTertiary dark:bg-dark-onTertiary'
     >
       <NavbarContent className='sm:hidden' justify='start'>
         <NavbarMenuToggle
@@ -120,7 +124,7 @@ export default function Header() {
       </NavbarContent>
 
       <NavbarContent as='div' className='items-center' justify='end'>
-        <NavbarItem>
+        {/* <NavbarItem className=''>
           <Link color='foreground' href='#'>
             Features
           </Link>
@@ -134,34 +138,48 @@ export default function Header() {
           <Link color='foreground' href='#'>
             Integrations
           </Link>
-        </NavbarItem>
-        <Dropdown placement='bottom-end'>
-          <DropdownTrigger>
-            <Avatar
-              isBordered
-              as='button'
-              className='transition-transform'
-              name='Jason Hughes'
-              size='sm'
-              src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
-            />
-          </DropdownTrigger>
-          <DropdownMenu aria-label='Profile Actions' variant='flat'>
-            <DropdownItem key='profile' className='h-14 gap-2'>
-              <p className='font-semibold'>Signed in as</p>
-              <p className='font-semibold'>zoey@example.com</p>
-            </DropdownItem>
-            <DropdownItem key='settings'>My Settings</DropdownItem>
-            <DropdownItem key='team_settings'>Team Settings</DropdownItem>
-            <DropdownItem key='analytics'>Analytics</DropdownItem>
-            <DropdownItem key='system'>System</DropdownItem>
-            <DropdownItem key='configurations'>Configurations</DropdownItem>
-            <DropdownItem key='help_and_feedback'>Help & Feedback</DropdownItem>
-            <DropdownItem key='logout' color='danger'>
-              <SignOut />
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+        </NavbarItem> */}
+        {loading ? (
+          <div className='max-w-[300px] w-full flex items-center gap-3'>
+            <div>
+              <Skeleton className='flex rounded-full w-12 h-12' />
+            </div>
+          </div>
+        ) : error ? (
+          <p className='text-light-onSurface dark:text-dark-onSurface'>
+            Error {error.message}
+          </p>
+        ) : (
+          <>
+            <Dropdown placement='bottom-end'>
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as='button'
+                  className='transition-transform'
+                  name='Jason Hughes'
+                  size='sm'
+                  src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label='Profile Actions' variant='flat'>
+                <DropdownItem key='profile' className='h-14 gap-2'>
+                  <p className='font-semibold'>Ingresado como</p>
+                  <p className='font-semibold'>{data?.me?.email}</p>
+                </DropdownItem>
+                <DropdownItem key='configurations'>
+                  Configuraciones
+                </DropdownItem>
+                <DropdownItem key='help_and_feedback'>
+                  Ayuda & Feedback
+                </DropdownItem>
+                <DropdownItem key='logout' color='danger'>
+                  <SignOut />
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </>
+        )}
       </NavbarContent>
 
       <NavbarMenu>
