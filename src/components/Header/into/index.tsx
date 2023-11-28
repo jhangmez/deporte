@@ -159,7 +159,7 @@ export default function Header() {
                   className='transition-transform'
                   name='Jason Hughes'
                   size='sm'
-                  src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+                  src='https://lh3.googleusercontent.com/pw/ADCreHdB1kXhJcx09p40r0LRYzwAJQAfPmvPuyAoJ0zQ4Zb1gBWyzoT6SHLbktyXYbmKlcI3c-7ETsFwe-y7c70ZDvWJD5iVQf3djMJXmn539RBvcfPcs6oFbyYDPzDZJNWrJXKTBAWeWJbXE1NkDKUdaJ58RK-ypBGjBxXjr39wBbGwQ4zl8WwsyNK-nPaTXC6s849S5g1a5IMaDyIo69U12NOGKex4mVqLE5zsr2WzasdJFwyh2HYZ10rF0I0cUqQhLLHRMY0H3g9n9PkhBNlHDyQeABc8zZQ2QLHiOTKHyU8wGyyE09duLSI07kCqHK5wIj3HdS687R2eV4cw6yd28x4vPEe4Cr_EjOBSBK6gyQWFpuewc-uHYvxlL4Mct3re0wRMjHcxr5eLWNDylT28Q4mk34vMviTRn7UQiKxZj4HSJxeuIYb0DGRTGa_UxOOwDtVhldyZTFj23KgPiNMoiEN8waH24_R6q7wxHhDL1KFpKuoSiJO-GmYT0tWhExhO4aarM4OALt7y7gujC7Gzpi62aoWb_sVmkVKkbqVwYZvzbebi-zCrMzByChUDjVBBQV6dYgYWycw8KJP7fB5KP2_TnFGGa5gkHGgPupUOpobnTnolIeLBD0Vjt3dhH2U4xM861mn7cMQp_nd9DqsZorK2jwYT33JD0mgqHUTz25cbwGP_Pq-kwoMAaaJNz1wXZCTlbO05w3JwP1wo5S_LyKhPFd1QiAH3EBNt3WZX6P7RaW__ga-mMwXc0Rb7WmJ9ztOnPznAZ7K89PujoYEiF3vO-zBGJ9w--aTZ-jz6fmd7yUdkkQXVKZgFOO4okgEy4mzhaIqW41zhtFQB7sOn5EuN1dGUTVpSYy8tQWVXLGZycOE9vedcQlwjcu5k1_0X_SoEw1aiLn0EOejaeXDsBfDdv4bVQqs4i7FPDEewwY4S8hJ2AKYTW5HgTvMbgXe0GmCR8XxoWRrNJ43Bki_crk4LKA_imD_97PHcVdLu397-GIEjzG2W660-84wzgtNvN3-so9PDi-ITKWwFhtwFJL0Qmf-yaMpELgHlio1B8DSZqh9G6rT24dK3=w150-h150-s-no-gm?authuser=2'
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label='Profile Actions' variant='flat'>

@@ -42,17 +42,17 @@ export default function App() {
           <h3 className='text-xl font-semibold text-light-onSurface dark:text-dark-onSurface'>
             Tu correo es:
           </h3>
-          <br></br> {data?.me?.email}
+          {data?.me?.email}
           <br></br>
           <h3 className='text-xl font-semibold text-light-onSurface dark:text-dark-onSurface'>
             Nombre:
           </h3>
-          <br></br> {data?.me?.name}
+          {data?.me?.name}
           <br></br>
           <h3 className='text-xl font-semibold text-light-onSurface dark:text-dark-onSurface'>
             Biografia:
           </h3>
-          <br></br> {data?.me?.profile?.bio}
+          {data?.me?.profile?.bio}
           <br></br>
         </div>
       )}
