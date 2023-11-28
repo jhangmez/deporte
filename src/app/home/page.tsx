@@ -11,7 +11,7 @@ export default function App() {
   // const { loading, error, data, refetch } = useQuery(AllUsers)
   const { loading, error, data, refetch } = useQuery(Myself)
   return (
-    <main className='bg-light-surface dark:bg-dark-surface'>
+    <main className='bg-light-surface dark:bg-dark-surface h-screen'>
       <Header />
       <Button
         as={Link}
@@ -39,15 +39,20 @@ export default function App() {
           className='text-light-onSurface dark:text-dark-onSurface'
         >
           <br></br>
-          {data?.me?.email}
+          <h3 className='text-xl font-semibold text-light-onSurface dark:text-dark-onSurface'>
+            Tu correo es:
+          </h3>
+          <br></br> {data?.me?.email}
           <br></br>
-          {data?.me?.id}
+          <h3 className='text-xl font-semibold text-light-onSurface dark:text-dark-onSurface'>
+            Nombre:
+          </h3>
+          <br></br> {data?.me?.name}
           <br></br>
-          {data?.me?.name}
-          <br></br>
-          {data?.me?.profile?.bio}
-          <br></br>
-          {data?.me?.profile?.id}
+          <h3 className='text-xl font-semibold text-light-onSurface dark:text-dark-onSurface'>
+            Biografia:
+          </h3>
+          <br></br> {data?.me?.profile?.bio}
           <br></br>
         </div>
       )}
