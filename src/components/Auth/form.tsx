@@ -1,15 +1,21 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { signIn } from 'next-auth/react'
 import toast from 'react-hot-toast'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Icon } from '@iconify/react'
+import { Checkbox } from '@nextui-org/checkbox'
+import { Input } from '@nextui-org/input'
+
+import { dotPulse } from 'ldrs'
 
 export default function Form({ type }: { type: 'login' | 'register' }) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const [isVisible, setIsVisible] = useState(false)
+  const toggleVisibility = () => setIsVisible(!isVisible)
 
   return (
     <form
@@ -59,39 +65,71 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
           })
         }
       }}
-      className='flex flex-col space-y-4 px-4 py-8 sm:px-16 bg-light-surfaceContainer dark:bg-dark-surfaceContainer'
+      className='flex flex-col space-y-4 px-2 py-8 sm:px-2'
     >
-      <div>
+      <div className='flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-2 flex-col'>
         <label
           htmlFor='email'
           className='block text-xs text-light-onSurface dark:text-dark-onSurface uppercase'
         >
           Correo electrónico
         </label>
-        <input
+        <Input
           id='email'
           name='email'
+          size='sm'
+          isRequired
           type='email'
-          placeholder='mail@email.com'
           autoComplete='email'
-          required
-          className='mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm'
+          placeholder='correo@ejemplo.com'
+          endContent={
+            <Icon
+              icon='mdi:email'
+              width='28'
+              height='28'
+              className='text-2xl text-default-400 pointer-events-none flex-shrink-0'
+            />
+          }
         />
       </div>
-      <div>
+      <div className='flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-2 flex-col'>
         <label
           htmlFor='password'
           className='block text-xs text-light-onSurface dark:text-dark-onSurface uppercase'
         >
           Contraseña
         </label>
-        <input
+        <Input
           id='password'
           name='password'
-          type='password'
-          placeholder='*********'
+          size='sm'
           required
-          className='mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm'
+          placeholder='Escribe tu contraseña'
+          // errorMessage='Escriba su contraseña'
+          endContent={
+            <button
+              className='focus:outline-none'
+              type='button'
+              onClick={toggleVisibility}
+            >
+              {isVisible ? (
+                <Icon
+                  icon='mdi:eye'
+                  width='28'
+                  height='28'
+                  className='text-2xl text-default-400 pointer-events-none'
+                />
+              ) : (
+                <Icon
+                  icon='mdi:eye-closed'
+                  width='28'
+                  height='28'
+                  className='text-2xl text-default-400 pointer-events-none'
+                />
+              )}
+            </button>
+          }
+          type={isVisible ? 'text' : 'password'}
         />
       </div>
       {type === 'register' && (
@@ -114,20 +152,8 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
       )}
 
       {type === 'register' && (
-        <div className='flex items-start mb-6'>
-          <div className='flex items-center h-5'>
-            <input
-              id='remember'
-              type='checkbox'
-              value=''
-              className='w-[18px] h-[18px] border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-light-primary dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800'
-              required
-            />
-          </div>
-          <label
-            htmlFor='remember'
-            className='ml-2 text-sm font-medium text-light-onSurface dark:text-dark-onSurface'
-          >
+        <Checkbox className='flex items-start mb-6'>
+          <div className='ml-2 text-sm font-medium text-light-onSurface dark:text-dark-onSurface'>
             Estoy de acuerdo con los {''}
             <Link
               href='/termscond'
@@ -136,8 +162,8 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
               términos y condiciones
             </Link>
             .
-          </label>
-        </div>
+          </div>
+        </Checkbox>
       )}
 
       <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
@@ -152,12 +178,8 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
           } min-w-[197px] w-fit h-10 bg-light-primary rounded-[100px] shadow flex-col justify-center items-center inline-flex`}
         >
           {loading ? (
-            <Icon
-              icon='eos-icons:bubble-loading'
-              height={18}
-              width={18}
-              color='#86C6FF'
-            />
+            // Default values shown
+            <l-orbit size='43' speed='1.3' color='black'></l-orbit>
           ) : (
             <div className='self-stretch grow  shrink basis-0 pl-4 pr-6 py-2.5 justify-center items-center  inline-flex'>
               {type === 'login' ? 'Ingresar' : 'Crear cuenta'}

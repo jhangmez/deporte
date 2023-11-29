@@ -6,9 +6,9 @@ import { Icon } from '@iconify/react'
 
 export default function Register() {
   return (
-    <div className='flex h-screen w-screen items-center justify-center bg-light-surface dark:bg-dark-surface'>
-      <div className='z-10 w-full max-w-md overflow-hidden rounded-[12px] border shadow-xl'>
-        <div className='flex flex-col items-center justify-center space-y-3 border-b bg-light-surfaceContainer dark:bg-dark-surfaceContainer px-4 py-6 pt-8 text-center sm:px-16'>
+    <main className='flex flex-col md:flex-row-reverse md:h-screen bg-light-surface dark:bg-dark-surface h-screen'>
+      <section className='flex items-start w-full px-4 mx-auto md:px-0 md:items-center md:w-1/3'>
+        <div className=' relative md:-left-2 bg-light-surface dark:bg-dark-surface pt-5 py-5'>
           <Link
             href='/'
             className='w-fit h-14 justify-start items-center gap-[5px] inline-flex'
@@ -28,16 +28,19 @@ export default function Register() {
               </span>
             </div>
           </Link>
-
+        </div>
+      </section>
+      <section className='justify-center px-4 md:px-0 md:flex md:w-2/3 md:border-r'>
+        <div className='w-full max-w-sm py-4 mx-auto my-auto min-w-min md:py-9 md:w-7/12'>
           <h3 className='text-xl font-semibold text-light-onSurface dark:text-dark-onSurface'>
             Crear cuenta
           </h3>
           <p className='text-sm text-light-onSurface dark:text-dark-onSurface'>
             Crea una cuenta con tu correo electrónico y contraseña.
           </p>
+          <Form type='register' />
         </div>
-        <Form type='register' />
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }
