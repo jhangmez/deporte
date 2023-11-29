@@ -16,7 +16,7 @@ export default async function middleware(req: NextRequest) {
   })
   // console.log('session de middleware: ', session?.accessToken)
 
-  if (!session && path === '/home') {
+  if (!session && (path === '/home' || path === '/register/infant')) {
     return NextResponse.redirect(new URL('/login', req.url))
   } else if (session && (path === '/login' || path === '/register')) {
     return NextResponse.redirect(new URL('/home', req.url))

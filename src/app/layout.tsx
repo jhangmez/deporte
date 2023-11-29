@@ -34,9 +34,9 @@ export default function RootLayout({
       >
         <Providers>
           <Toaster />
-          <Suspense fallback='Loading...'>
+          {/* <Suspense fallback='Loading...'>
             <AuthStatus />
-          </Suspense>
+          </Suspense> */}
           <noscript>Página realizada por @jhangmez de HarkaySoft</noscript>
           {children}
           <Analytics />

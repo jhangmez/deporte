@@ -20,10 +20,9 @@ import {
 } from '@nextui-org/react'
 import { Icon } from '@iconify/react'
 import { Skeleton } from '@nextui-org/skeleton'
-
-import SignOut from '@components/Auth/sign-out'
 import { useQuery } from '@apollo/client'
 import { Myself } from '@lib/graphql/query'
+import { signOut } from 'next-auth/react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
@@ -163,18 +162,24 @@ export default function Header() {
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label='Profile Actions' variant='flat'>
-                <DropdownItem key='profile' className='h-14 gap-2'>
+                <DropdownItem className='h-14 gap-2'>
                   <p className='font-semibold'>Ingresado como</p>
                   <p className='font-semibold'>{data?.me?.email}</p>
                 </DropdownItem>
+                <DropdownItem key='profile'>Perfil</DropdownItem>
                 <DropdownItem key='configurations'>
                   Configuraciones
                 </DropdownItem>
                 <DropdownItem key='help_and_feedback'>
                   Ayuda & Feedback
                 </DropdownItem>
-                <DropdownItem key='logout' color='danger'>
-                  <SignOut />
+                <DropdownItem
+                  key='logout'
+                  color='danger'
+                  className='text-danger'
+                  onPress={() => signOut()}
+                >
+                  Cerrar sesión
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>

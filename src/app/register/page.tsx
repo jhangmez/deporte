@@ -1,6 +1,6 @@
 'use client'
 
-import Form from '@components/Auth/form'
+import Form from '@components/Form'
 import Link from 'next/link'
 import { Icon } from '@iconify/react'
 
