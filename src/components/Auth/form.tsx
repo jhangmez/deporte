@@ -9,9 +9,6 @@ import { Icon } from '@iconify/react'
 import { Checkbox } from '@nextui-org/checkbox'
 import { Input } from '@nextui-org/input'
 
-import { orbit } from 'ldrs'
-orbit.register()
-
 export default function Form({ type }: { type: 'login' | 'register' }) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
@@ -179,8 +176,12 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
           } min-w-[197px] w-fit h-10 bg-light-primary rounded-[100px] shadow flex-col justify-center items-center inline-flex`}
         >
           {loading ? (
-            // Default values shown
-            <l-orbit size='25' speed='1.3' color='black'></l-orbit>
+            <Icon
+              icon='eos-icons:bubble-loading'
+              height={18}
+              width={18}
+              color='#41484f'
+            />
           ) : (
             <div className='self-stretch grow  shrink basis-0 pl-4 pr-6 py-2.5 justify-center items-center  inline-flex'>
               {type === 'login' ? 'Ingresar' : 'Crear cuenta'}
@@ -196,7 +197,12 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
           } min-w-[197px] w-fit h-10 bg-light-surface hover:bg-light-surfaceVariant hover:text-dark-primary rounded-[100px] shadow flex-col justify-center items-center gap-2 inline-flex`}
         >
           {loading ? (
-            <l-orbit size='25' speed='1.3' color='black'></l-orbit>
+            <Icon
+              icon='eos-icons:bubble-loading'
+              height={18}
+              width={18}
+              color='#41484f'
+            />
           ) : (
             <div className='self-stretch grow shrink basis-0 pl-4 pr-6 py-2.5 justify-center items-center gap-2 inline-flex'>
               <Icon icon='logos:google-icon' height={18} width={18} />
