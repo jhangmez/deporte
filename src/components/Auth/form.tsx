@@ -10,13 +10,13 @@ import { Checkbox } from '@nextui-org/checkbox'
 import { Input } from '@nextui-org/input'
 
 import { orbit } from 'ldrs'
+orbit.register()
 
 export default function Form({ type }: { type: 'login' | 'register' }) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const [isVisible, setIsVisible] = useState(false)
   const toggleVisibility = () => setIsVisible(!isVisible)
-  orbit.register()
 
   return (
     <form

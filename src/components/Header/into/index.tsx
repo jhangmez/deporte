@@ -108,7 +108,7 @@ export default function Header() {
                 'h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20'
             }}
             className='hidden sm:flex ml-4'
-            placeholder='Type to search...'
+            placeholder='Buscador'
             size='sm'
             startContent={
               <Icon
