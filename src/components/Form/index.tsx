@@ -1,4 +1,5 @@
 'use client'
+
 import Forget from './forget'
 import Login from './login'
 import Register from './register'
