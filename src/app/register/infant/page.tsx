@@ -32,6 +32,12 @@ export default function Register() {
       </section>
       <section className='justify-center px-4 md:px-0 md:flex md:w-2/3 md:border-r'>
         <div className='w-full max-w-sm py-4 mx-auto my-auto min-w-min md:py-9 md:w-7/12'>
+          <Link
+            className='text-light-primary dark:text-dark-primary'
+            href='/home'
+          >
+            Regresar
+          </Link>
           <h3 className='text-xl font-semibold text-light-onSurface dark:text-dark-onSurface'>
             Crear infante
           </h3>
