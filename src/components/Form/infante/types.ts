@@ -9,11 +9,5 @@ export type FormData = {
   province: string
   distrite: string
   postal: string
-  age: string
-  street: string
-  city: string
-  state: string
-  zip: string
-  email: string
-  password: string
+  username: string
 }

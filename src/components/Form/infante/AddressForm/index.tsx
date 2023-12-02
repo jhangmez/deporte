@@ -6,10 +6,12 @@ import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
-  DropdownItem,
-  Button,
-  Input
-} from '@nextui-org/react'
+  DropdownItem
+} from '@nextui-org/dropdown'
+import { Button } from '@nextui-org/button'
+import { Input } from '@nextui-org/input'
+import { button } from '@nextui-org/react'
+import { Select, SelectSection, SelectItem } from '@nextui-org/select'
 
 type AddressData = {
   country: string
@@ -45,43 +47,45 @@ export function AddressForm({
 
   return (
     <FormWrapper title='Informacion de contacto'>
-      <label>Departamento: {selectedDepartment}</label>
+      <label>
+        Departamento: {selectedDepartment} {department}
+      </label>
       <br></br>
 
-      <Dropdown>
-        <DropdownTrigger>
-          <Button
-            startContent={<Icon icon='subway:down-2' width='12' height='12' />}
-          >
-            {selectedDepartment || 'Elija un departamento'}
-          </Button>
-        </DropdownTrigger>
-        <DropdownMenu
-          aria-label='Elija un departamento'
-          items={departments}
-          disallowEmptySelection
-        >
-          {(item) => (
-            <DropdownItem
-              key={item.id}
-              onPress={() => {
-                updateFields({
-                  department: item.id,
-                  province: '',
-                  distrite: ''
-                })
-                setFilteredProvinces(
-                  provinces.filter(
-                    (province) => province.department_id === item.id
-                  )
+      <Select
+        items={departments}
+        label='Elija un departamento'
+        isRequired
+        placeholder='Elija un departamento'
+        defaultSelectedKeys={department}
+        value={selectedDepartment}
+        // selectedKeys={department}
+        // value={department}
+        scrollShadowProps={{
+          isEnabled: false
+        }}
+        className='max-w-xs'
+      >
+        {(item) => (
+          <SelectItem
+            key={item.id}
+            onPress={() => {
+              updateFields({
+                department: item.id,
+                province: '',
+                distrite: ''
+              })
+              setFilteredProvinces(
+                provinces.filter(
+                  (province) => province.department_id === item.id
                 )
-              }}
-            >
-              {item.name}
-            </DropdownItem>
-          )}
-        </DropdownMenu>
-      </Dropdown>
+              )
+            }}
+          >
+            {item.name}
+          </SelectItem>
+        )}
+      </Select>
 
       <br></br>
       <label>
@@ -89,69 +93,63 @@ export function AddressForm({
       </label>
       <br></br>
 
-      <Dropdown>
-        <DropdownTrigger>
-          <Button
-            isDisabled={!department}
-            startContent={<Icon icon='subway:down-2' width='12' height='12' />}
+      <Select
+        items={filteredProvinces}
+        isRequired
+        value={selectedProvince}
+        isDisabled={!department}
+        label='Elija una Provincia'
+        placeholder='Elija una Provincia'
+        scrollShadowProps={{
+          isEnabled: false
+        }}
+        className='max-w-xs'
+      >
+        {(item) => (
+          <SelectItem
+            key={item.id}
+            onPress={() => {
+              updateFields({ province: item.id, distrite: '' })
+              setFilteredDistrite(
+                distrites.filter((distrite) => distrite.province_id === item.id)
+              )
+            }}
           >
-            {selectedProvince || 'Elija una Provincia'}
-          </Button>
-        </DropdownTrigger>
-        <DropdownMenu
-          aria-label='Elija una Provincia'
-          items={filteredProvinces}
-          disallowEmptySelection
-        >
-          {(item) => (
-            <DropdownItem
-              key={item.id}
-              onPress={() => {
-                updateFields({ province: item.id, distrite: '' })
-                setFilteredDistrite(
-                  distrites.filter(
-                    (distrite) => distrite.province_id === item.id
-                  )
-                )
-              }}
-            >
-              {item.name}
-            </DropdownItem>
-          )}
-        </DropdownMenu>
-      </Dropdown>
+            {item.name}
+          </SelectItem>
+        )}
+      </Select>
+
       <br></br>
       <label>
         Distrito:{selectedDistrite} {distrite}
       </label>
       <br></br>
 
-      <Dropdown>
-        <DropdownTrigger>
-          <Button
-            isDisabled={!province}
-            startContent={<Icon icon='subway:down-2' width='12' height='12' />}
+      <Select
+        items={filteredDistrite}
+        isDisabled={!province}
+        isRequired
+        value={selectedDistrite}
+        label='Elija un distrito'
+        scrollShadowProps={{
+          isEnabled: false
+        }}
+        placeholder='Elija un distrito'
+        className='max-w-xs'
+      >
+        {/* {(animal) => <SelectItem key={animal.value}>{animal.label}</SelectItem>} */}
+        {(item) => (
+          <DropdownItem
+            key={item.id}
+            onPress={() => {
+              updateFields({ distrite: item.id })
+            }}
           >
-            {selectedDistrite || 'Elija un distrito'}
-          </Button>
-        </DropdownTrigger>
-        <DropdownMenu
-          aria-label='Elija un distrito'
-          items={filteredDistrite}
-          disallowEmptySelection
-        >
-          {(item) => (
-            <DropdownItem
-              key={item.id}
-              onPress={() => {
-                updateFields({ distrite: item.id })
-              }}
-            >
-              {item.name}
-            </DropdownItem>
-          )}
-        </DropdownMenu>
-      </Dropdown>
+            {item.name}
+          </DropdownItem>
+        )}
+      </Select>
 
       <br></br>
       <label>Numero postal: {postal}</label>
@@ -161,7 +159,6 @@ export function AddressForm({
         type='text'
         value={postal}
         name='maternal'
-        // onChange={(e) => updateFields({ postal: e.target.value })}
         onChange={(e) => {
           const value = e.target.value
           if (value === '' || /^[0-9]+$/.test(value)) {
