@@ -43,7 +43,12 @@ export function UserForm({
         value={firstName}
         isRequired
         name='firstName'
-        onChange={(e) => updateFields({ firstName: e.target.value })}
+        onChange={(e) => {
+          const value = e.target.value
+          if (value === '' || /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/.test(value)) {
+            updateFields({ firstName: value })
+          }
+        }}
         errorMessage={isInvalidName && 'Please enter a valid name'}
         fullWidth
       />
@@ -56,7 +61,12 @@ export function UserForm({
         value={paternal}
         isRequired
         name='paternal'
-        onChange={(e) => updateFields({ paternal: e.target.value })}
+        onChange={(e) => {
+          const value = e.target.value
+          if (value === '' || /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/.test(value)) {
+            updateFields({ paternal: value })
+          }
+        }}
         errorMessage={isInvalidPaternal && 'Please enter a valid name'}
         fullWidth
       />
@@ -69,7 +79,12 @@ export function UserForm({
         value={maternal}
         isRequired
         name='maternal'
-        onChange={(e) => updateFields({ maternal: e.target.value })}
+        onChange={(e) => {
+          const value = e.target.value
+          if (value === '' || /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/.test(value)) {
+            updateFields({ maternal: value })
+          }
+        }}
         errorMessage={isInvalidMaternal && 'Please enter a valid name'}
         fullWidth
       />

@@ -10,7 +10,7 @@ import { Slider } from '@nextui-org/slider'
 import { FormData } from './types'
 
 const INITIAL_DATA: FormData = {
-  authorization: false,
+  authorization: true,
   firstName: '',
   paternal: '',
   maternal: '',
@@ -18,6 +18,7 @@ const INITIAL_DATA: FormData = {
   country: '',
   department: '',
   province: '',
+  distrite: '',
   postal: '',
   age: '',
   street: '',
@@ -49,10 +50,10 @@ export default function FormInfante() {
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
-      <AuthorizationForm {...data} updateFields={updateFields} />,
-      // <AddressForm {...data} updateFields={updateFields} />,
-      // <UserForm {...data} updateFields={updateFields} />,
+      // <AuthorizationForm {...data} updateFields={updateFields} />,
       // <DateForm {...data} updateFields={updateFields} />,
+      // <UserForm {...data} updateFields={updateFields} />,
+      <AddressForm {...data} updateFields={updateFields} />,
       <ResumeForm data={data} />
     ])
 
@@ -98,7 +99,7 @@ export default function FormInfante() {
           <Button
             color='primary'
             type='submit'
-            isDisabled={isAnyNameInvalid || !data.authorization}
+            // isDisabled={isAnyNameInvalid || !data.authorization}
           >
             {isLastStep ? 'Enviar' : 'Siguiente'}
           </Button>

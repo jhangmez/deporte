@@ -7,6 +7,7 @@ export type FormData = {
   country: string
   department: string
   province: string
+  distrite: string
   postal: string
   age: string
   street: string

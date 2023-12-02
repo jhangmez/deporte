@@ -5,11 +5,11 @@ type DateData = {
   date: string
 }
 
-type AddressFormProps = DateData & {
+type DateFormProps = DateData & {
   updateFields: (fields: Partial<DateData>) => void
 }
 
-export function DateForm({ date, updateFields }: AddressFormProps) {
+export function DateForm({ date, updateFields }: DateFormProps) {
   return (
     <FormWrapper title='Address Information'>
       <label>Fecha de nacimiento</label>
@@ -20,7 +20,7 @@ export function DateForm({ date, updateFields }: AddressFormProps) {
         type='date'
         value={date}
         isRequired
-        name='firstName'
+        name='date'
         onChange={(e) => updateFields({ date: e.target.value })}
         // errorMessage={date && 'Please enter a valid name'}
         fullWidth
