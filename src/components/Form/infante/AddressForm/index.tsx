@@ -1,5 +1,5 @@
 import { FormWrapper } from '../FormWrapper'
-import { useState, useMemo, useEffect } from 'react'
+import { useState } from 'react'
 import { countries, departments, provinces, distrites } from './data'
 import { Icon } from '@iconify/react'
 import {
@@ -23,16 +23,6 @@ type AddressFormProps = AddressData & {
   updateFields: (fields: Partial<AddressData>) => void
 }
 
-const validateName = (valueName: string) => {
-  return !valueName.match(/^[0-9]+$/)
-}
-
-const useValidation = (value: string) =>
-  useMemo(() => {
-    if (value === '') return false
-    return validateName(value)
-  }, [value])
-
 export function AddressForm({
   country,
   department,
@@ -53,7 +43,6 @@ export function AddressForm({
   const selectedDistrite =
     distrites.find((item) => item.id === distrite)?.name || ''
 
-  const isInvalidMaternal = useValidation(postal)
   return (
     <FormWrapper title='Informacion de contacto'>
       <label>Departamento: {selectedDepartment}</label>
@@ -179,7 +168,6 @@ export function AddressForm({
             updateFields({ postal: value })
           }
         }}
-        errorMessage={isInvalidMaternal && 'Please enter a valid name'}
         fullWidth
       />
       <br />
