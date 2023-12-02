@@ -11,7 +11,6 @@ export const ResumeForm: React.FC<ResumeFormProps> = ({ data }) => {
       <label>Resumen</label>
       <br></br>
       {JSON.stringify(data, null, 2)}
-      {data.age}
     </FormWrapper>
   )
 }
