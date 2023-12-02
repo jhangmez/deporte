@@ -49,8 +49,6 @@ export function AddressForm({
         isRequired
         placeholder='Elija un departamento'
         value={selectedDepartment}
-        // selectedKeys={department}
-        // value={department}
         scrollShadowProps={{
           isEnabled: false
         }}
@@ -128,7 +126,6 @@ export function AddressForm({
         placeholder='Elija un distrito'
         className='max-w-xs'
       >
-        {/* {(animal) => <SelectItem key={animal.value}>{animal.label}</SelectItem>} */}
         {(item) => (
           <SelectItem
             key={item.id}

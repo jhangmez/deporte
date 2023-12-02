@@ -34,11 +34,15 @@ export default function FormInfante() {
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
-      <AuthorizationForm {...data} updateFields={updateFields} />,
-      <DateForm {...data} updateFields={updateFields} />,
-      <UserForm {...data} updateFields={updateFields} />,
-      <AddressForm {...data} updateFields={updateFields} />,
-      <ResumeForm data={data} />
+      <AuthorizationForm
+        key='authorizationForm'
+        {...data}
+        updateFields={updateFields}
+      />,
+      <DateForm key='dateForm' {...data} updateFields={updateFields} />,
+      <UserForm key='userForm' {...data} updateFields={updateFields} />,
+      <AddressForm key='addressForm' {...data} updateFields={updateFields} />,
+      <ResumeForm key='resumeForm' data={data} />
     ])
 
   function onSubmit(e: FormEvent) {
