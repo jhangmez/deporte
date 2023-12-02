@@ -38,9 +38,7 @@ export function AddressForm({
 
   return (
     <FormWrapper title='Informacion de contacto'>
-      <label>
-        Departamento: {selectedDepartment} {department}
-      </label>
+      <label>Departamento:</label>
       <br></br>
 
       <Select
@@ -76,9 +74,7 @@ export function AddressForm({
       </Select>
 
       <br></br>
-      <label>
-        Provincia:{selectedProvince} {province}
-      </label>
+      <label>Provincia:</label>
       <br></br>
 
       <Select
@@ -110,9 +106,7 @@ export function AddressForm({
       </Select>
 
       <br></br>
-      <label>
-        Distrito:{selectedDistrite} {distrite}
-      </label>
+      <label>Distrito:</label>
       <br></br>
 
       <Select
