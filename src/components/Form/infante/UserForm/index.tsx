@@ -12,26 +12,12 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-const validateName = (valueName: string) => {
-  return !valueName.match(/^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/)
-}
-
-const useValidation = (value: string) =>
-  useMemo(() => {
-    if (value === '') return false
-    return validateName(value)
-  }, [value])
-
 export function UserForm({
   firstName,
   paternal,
   maternal,
   updateFields
 }: UserFormProps) {
-  const isInvalidName = useValidation(firstName)
-  const isInvalidPaternal = useValidation(paternal)
-  const isInvalidMaternal = useValidation(maternal)
-
   return (
     <FormWrapper title='Detalle de infante'>
       <br />
@@ -49,7 +35,6 @@ export function UserForm({
             updateFields({ firstName: value })
           }
         }}
-        errorMessage={isInvalidName && 'Please enter a valid name'}
         fullWidth
       />
       <br />
@@ -67,7 +52,6 @@ export function UserForm({
             updateFields({ paternal: value })
           }
         }}
-        errorMessage={isInvalidPaternal && 'Please enter a valid name'}
         fullWidth
       />
       <br />
@@ -85,7 +69,6 @@ export function UserForm({
             updateFields({ maternal: value })
           }
         }}
-        errorMessage={isInvalidMaternal && 'Please enter a valid name'}
         fullWidth
       />
       <br />

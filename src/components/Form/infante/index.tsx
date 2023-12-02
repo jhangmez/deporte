@@ -10,7 +10,7 @@ import { Slider } from '@nextui-org/slider'
 import { FormData } from './types'
 
 const INITIAL_DATA: FormData = {
-  authorization: true,
+  authorization: false,
   firstName: '',
   paternal: '',
   maternal: '',
@@ -29,16 +29,6 @@ const INITIAL_DATA: FormData = {
   password: ''
 }
 
-const validateName = (valueName: string) => {
-  return !valueName.match(/^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/)
-}
-
-const useValidation = (value: string) =>
-  useMemo(() => {
-    if (value === '') return false
-    return validateName(value)
-  }, [value])
-
 export default function FormInfante() {
   const [data, setData] = useState(INITIAL_DATA)
 
@@ -50,9 +40,9 @@ export default function FormInfante() {
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
-      // <AuthorizationForm {...data} updateFields={updateFields} />,
-      // <DateForm {...data} updateFields={updateFields} />,
-      // <UserForm {...data} updateFields={updateFields} />,
+      <AuthorizationForm {...data} updateFields={updateFields} />,
+      <DateForm {...data} updateFields={updateFields} />,
+      <UserForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
       <ResumeForm data={data} />
     ])
@@ -61,15 +51,6 @@ export default function FormInfante() {
     e.preventDefault()
     if (!isLastStep) return next()
   }
-
-  const isInvalidName = useValidation(data.firstName)
-  const isInvalidPaternal = useValidation(data.paternal)
-  const isInvalidMaternal = useValidation(data.maternal)
-
-  const isAnyNameInvalid = useMemo(
-    () => isInvalidName || isInvalidPaternal || isInvalidMaternal,
-    [isInvalidName, isInvalidPaternal, isInvalidMaternal]
-  )
 
   return (
     <div className='text-light-onSurface dark:text-dark-onSurface'>
@@ -95,11 +76,10 @@ export default function FormInfante() {
               Regresar
             </Button>
           )}
-
           <Button
             color='primary'
             type='submit'
-            // isDisabled={isAnyNameInvalid || !data.authorization}
+            isDisabled={!data.authorization}
           >
             {isLastStep ? 'Enviar' : 'Siguiente'}
           </Button>
