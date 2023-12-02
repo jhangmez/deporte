@@ -1,4 +1,4 @@
-import { useState, FormEvent, useMemo, useCallback } from 'react'
+import { useState, FormEvent, useCallback } from 'react'
 import { useMultistepForm } from './useMultistepForm'
 import { ResumeForm } from './ResumeForm'
 import { UserForm } from './UserForm'
@@ -34,9 +34,9 @@ export default function FormInfante() {
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
-      // <AuthorizationForm {...data} updateFields={updateFields} />,
-      // <DateForm {...data} updateFields={updateFields} />,
-      // <UserForm {...data} updateFields={updateFields} />,
+      <AuthorizationForm {...data} updateFields={updateFields} />,
+      <DateForm {...data} updateFields={updateFields} />,
+      <UserForm {...data} updateFields={updateFields} />,
       <AddressForm {...data} updateFields={updateFields} />,
       <ResumeForm data={data} />
     ])

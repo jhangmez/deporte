@@ -1,17 +1,8 @@
 import { FormWrapper } from '../FormWrapper'
 import { useState } from 'react'
 import { countries, departments, provinces, distrites } from './data'
-import { Icon } from '@iconify/react'
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem
-} from '@nextui-org/dropdown'
-import { Button } from '@nextui-org/button'
 import { Input } from '@nextui-org/input'
-import { button } from '@nextui-org/react'
-import { Select, SelectSection, SelectItem } from '@nextui-org/select'
+import { Select, SelectItem } from '@nextui-org/select'
 
 type AddressData = {
   country: string
@@ -57,7 +48,6 @@ export function AddressForm({
         label='Elija un departamento'
         isRequired
         placeholder='Elija un departamento'
-        defaultSelectedKeys={department}
         value={selectedDepartment}
         // selectedKeys={department}
         // value={department}
@@ -140,14 +130,14 @@ export function AddressForm({
       >
         {/* {(animal) => <SelectItem key={animal.value}>{animal.label}</SelectItem>} */}
         {(item) => (
-          <DropdownItem
+          <SelectItem
             key={item.id}
             onPress={() => {
               updateFields({ distrite: item.id })
             }}
           >
             {item.name}
-          </DropdownItem>
+          </SelectItem>
         )}
       </Select>
 
