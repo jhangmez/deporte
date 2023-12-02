@@ -48,7 +48,7 @@ export function AddressForm({
         label='Elija un departamento'
         isRequired
         placeholder='Elija un departamento'
-        value={selectedDepartment}
+        defaultSelectedKeys={[department]}
         scrollShadowProps={{
           isEnabled: false
         }}
@@ -86,6 +86,7 @@ export function AddressForm({
         isRequired
         value={selectedProvince}
         isDisabled={!department}
+        defaultSelectedKeys={[province]}
         label='Elija una Provincia'
         placeholder='Elija una Provincia'
         scrollShadowProps={{
@@ -119,6 +120,7 @@ export function AddressForm({
         isDisabled={!province}
         isRequired
         value={selectedDistrite}
+        defaultSelectedKeys={[distrite]}
         label='Elija un distrito'
         scrollShadowProps={{
           isEnabled: false

@@ -10,7 +10,7 @@ import { Slider } from '@nextui-org/slider'
 import { FormData } from './types'
 
 const INITIAL_DATA: FormData = {
-  authorization: true,
+  authorization: false,
   firstName: '',
   paternal: '',
   maternal: '',
