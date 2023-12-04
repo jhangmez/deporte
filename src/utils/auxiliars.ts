@@ -3,7 +3,7 @@ export const displayDate = (date: Date | null): string => {
 }
 
 export const formatGender = (gender: string): string => {
-  return gender === '01' ? 'Masculino' : 'Femenino'
+  return gender === '1' ? 'Masculino' : 'Femenino'
 }
 
 export const calculateAge = (birthdate: Date | null): number => {

@@ -5,7 +5,7 @@ import Perfil from '@components/Perfil'
 
 export default function Page({ params }: { params: { slug: string } }) {
   return (
-    <main className='w-screen h-screen'>
+    <main className='bg-light-surface dark:bg-dark-surface h-screen'>
       <div className='bg-light-surface dark:bg-dark-surface'>
         <Header />
       </div>

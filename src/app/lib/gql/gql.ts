@@ -18,6 +18,7 @@ const documents = {
     "\nmutation CreateInfant( $bio: String, $username: String!, $firstname: String, $paternal: String, $maternal: String, $gender: String, $birthday: DateTime, $country: String, $department: String, $province: String, $distrite: String, $authorization: Boolean!, $postal: String) {\n  createInfant(\n    bio: $bio,\n    username: $username,\n    firstname: $firstname,\n    paternal: $paternal,\n    maternal: $maternal,\n    gender: $gender,\n    birthday: $birthday,\n    country: $country,\n    department: $department,\n    province: $province,\n    distrite: $distrite,\n    authorization: $authorization,\n    postal: $postal\n    ) {\n    id\n  }\n}\n": types.CreateInfantDocument,
     "\n  query AllUsers {\n    allUsers {\n      id\n      name\n      email\n    }\n  }\n": types.AllUsersDocument,
     "\n  query Me {\n    me {\n      id\n      name\n      email\n      profile {\n        id\n        bio\n      }\n    }\n  }\n": types.MeDocument,
+    "\nquery InfantByUsername($username: String!) {\n  infantByUsername(\n    InfantUsername: {\n      username: $username\n    }) {\n    username\n    firstname\n    paternal\n    maternal\n    birthday\n    gender\n    country\n    department\n    province\n    distrite\n    postal\n  }\n}\n": types.InfantByUsernameDocument,
 };
 
 /**
@@ -54,6 +55,10 @@ export function gql(source: "\n  query AllUsers {\n    allUsers {\n      id\n   
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query Me {\n    me {\n      id\n      name\n      email\n      profile {\n        id\n        bio\n      }\n    }\n  }\n"): (typeof documents)["\n  query Me {\n    me {\n      id\n      name\n      email\n      profile {\n        id\n        bio\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nquery InfantByUsername($username: String!) {\n  infantByUsername(\n    InfantUsername: {\n      username: $username\n    }) {\n    username\n    firstname\n    paternal\n    maternal\n    birthday\n    gender\n    country\n    department\n    province\n    distrite\n    postal\n  }\n}\n"): (typeof documents)["\nquery InfantByUsername($username: String!) {\n  infantByUsername(\n    InfantUsername: {\n      username: $username\n    }) {\n    username\n    firstname\n    paternal\n    maternal\n    birthday\n    gender\n    country\n    department\n    province\n    distrite\n    postal\n  }\n}\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

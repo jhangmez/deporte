@@ -23,3 +23,24 @@ export const Myself = gql(/* GraphQL */ `
     }
   }
 `)
+
+export const infantByUsername = gql(`
+query InfantByUsername($username: String!) {
+  infantByUsername(
+    InfantUsername: {
+      username: $username
+    }) {
+    username
+    firstname
+    paternal
+    maternal
+    birthday
+    gender
+    country
+    department
+    province
+    distrite
+    postal
+  }
+}
+`)
