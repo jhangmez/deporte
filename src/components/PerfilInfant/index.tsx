@@ -1,5 +1,3 @@
-'use client'
-
 import { useQuery } from '@apollo/client'
 import { infantByUsername } from '@lib/graphql/query'
 import { Skeleton } from '@nextui-org/skeleton'
