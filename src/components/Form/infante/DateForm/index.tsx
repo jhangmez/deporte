@@ -1,35 +1,28 @@
 import { FormWrapper } from '../FormWrapper'
 import { Input } from '@nextui-org/input'
+import { Select, SelectItem } from '@nextui-org/select'
+import { calculateAge, displayDate, parseStringToDate } from '@utils/auxiliars'
 
 type DateData = {
-  date: string
+  birthday: Date | null
+  gender: string
 }
 
 type DateFormProps = DateData & {
   updateFields: (fields: Partial<DateData>) => void
 }
 
-export function DateForm({ date, updateFields }: DateFormProps) {
-  const calculateAge = (birthdate: string): number => {
-    const today = new Date()
-    const birthDate = new Date(birthdate)
-    let age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
+type Gender = { label: string; id: string }
 
-    if (
-      monthDiff < 0 ||
-      (monthDiff === 0 && today.getDate() < birthDate.getDate())
-    ) {
-      age--
-    }
+const genders: Gender[] = [
+  { label: 'Masculino', id: '1' },
+  { label: 'Femenino', id: '2' }
+]
 
-    return age
-  }
-
-  const age = calculateAge(date)
-  const ageDisplay = isNaN(age) ? '' : age.toString()
-
+export function DateForm({ birthday, gender, updateFields }: DateFormProps) {
   const todayDate = new Date().toISOString().split('T')[0]
+  const age = calculateAge(birthday)
+
   return (
     <FormWrapper title='Address Information'>
       <label>Fecha de nacimiento</label>
@@ -38,18 +31,40 @@ export function DateForm({ date, updateFields }: DateFormProps) {
       <Input
         label='Fecha de nacimiento'
         type='date'
-        value={date}
+        value={displayDate(birthday)}
         isRequired
         name='date'
         max={todayDate}
-        onChange={(e) => updateFields({ date: e.target.value })}
+        onChange={(e) =>
+          updateFields({ birthday: parseStringToDate(e.target.value) })
+        }
         fullWidth
       />
+      <label>Genero</label>
+      <br></br>
+      <Select
+        items={genders}
+        isRequired
+        label='Seleccione el genero'
+        value={gender}
+        defaultSelectedKeys={[gender]}
+        placeholder='Seleccione el genero'
+        className='max-w-xs'
+        onChange={(e) => updateFields({ gender: e.target.value })}
+      >
+        {(gender) => <SelectItem key={gender.id}>{gender.label}</SelectItem>}
+      </Select>
       <br></br>
       <label>Edad</label>
       <br></br>
 
-      <Input label='Edad' isReadOnly value={ageDisplay} fullWidth />
+      <Input
+        label='Edad'
+        description='Se escribe automáticamente'
+        isReadOnly
+        value={age.toString()}
+        fullWidth
+      />
     </FormWrapper>
   )
 }

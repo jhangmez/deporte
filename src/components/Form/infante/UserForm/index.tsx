@@ -2,7 +2,7 @@ import { FormWrapper } from '../FormWrapper'
 import { Input } from '@nextui-org/input'
 
 type UserData = {
-  firstName: string
+  firstname: string
   paternal: string
   maternal: string
 }
@@ -12,33 +12,31 @@ type UserFormProps = UserData & {
 }
 
 export function UserForm({
-  firstName,
+  firstname,
   paternal,
   maternal,
   updateFields
 }: UserFormProps) {
   return (
     <FormWrapper title='Detalle de infante'>
-      <br />
-
       <label>Nombres</label>
       <Input
         label='Nombres'
         type='text'
-        value={firstName}
+        value={firstname}
         isRequired
-        name='firstName'
+        name='firstname'
         onChange={(e) => {
           const value = e.target.value
           if (value === '' || /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/.test(value)) {
-            updateFields({ firstName: value })
+            updateFields({ firstname: value })
           }
         }}
         fullWidth
       />
-      <br />
+
       <label>Apellido paterno</label>
-      <br />
+
       <Input
         label='Apellido paterno'
         type='text'
@@ -53,9 +51,9 @@ export function UserForm({
         }}
         fullWidth
       />
-      <br />
+
       <label>Apellido materno</label>
-      <br />
+
       <Input
         label='Apellido materno'
         type='text'
@@ -70,7 +68,6 @@ export function UserForm({
         }}
         fullWidth
       />
-      <br />
     </FormWrapper>
   )
 }

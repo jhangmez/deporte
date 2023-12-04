@@ -15,7 +15,6 @@ export default function Form({
     <div>
       {type === 'login' && <Login />}
       {type === 'register' && <Register />}
-      {/* {type === 'infant' && <Infant />} */}
       {type === 'infant' && <Infante />}
       {type === 'forget' && <Forget />}
     </div>

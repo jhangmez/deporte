@@ -16,11 +16,19 @@ export async function POST(req: Request) {
 
   const response = await axios.post(graphqlUrl, {
     query: `
-    mutation Mutation($email: String!, $password: String!, $name: String!) {
+    mutation Mutation($email: String!, $password: String!, $name: String, $bio: String) {
       signup(email: $email, password: $password, name: $name) {
         token
       }
-    }
+      addProfileForUser(
+        userUniqueInput: {
+          email: $email
+        }
+        bio: $bio
+      ) {
+        bio
+      }
+      }
     `,
     variables: {
       email: email,

@@ -14,7 +14,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  mutation Login($loginEmail: String!, $loginPassword: String!) {\n    login(email: $loginEmail, password: $loginPassword) {\n      token\n      user {\n        id\n        name\n        email\n      }\n    }\n  }\n": types.LoginDocument,
-    "\n  mutation Mutation($email: String!, $password: String!, $name: String) {\n  signup(email: $email, password: $password, name: $name) {\n    token\n  }\n}\n": types.MutationDocument,
+    "\n  mutation Signup($email: String!, $password: String!, $name: String) {\n  signup(email: $email, password: $password, name: $name) {\n    token\n  }\n}\n": types.SignupDocument,
+    "\nmutation CreateInfant( $bio: String, $username: String!, $firstname: String, $paternal: String, $maternal: String, $gender: String, $birthday: DateTime, $country: String, $department: String, $province: String, $distrite: String, $authorization: Boolean!, $postal: String) {\n  createInfant(\n    bio: $bio,\n    username: $username,\n    firstname: $firstname,\n    paternal: $paternal,\n    maternal: $maternal,\n    gender: $gender,\n    birthday: $birthday,\n    country: $country,\n    department: $department,\n    province: $province,\n    distrite: $distrite,\n    authorization: $authorization,\n    postal: $postal\n    ) {\n    id\n  }\n}\n": types.CreateInfantDocument,
     "\n  query AllUsers {\n    allUsers {\n      id\n      name\n      email\n    }\n  }\n": types.AllUsersDocument,
     "\n  query Me {\n    me {\n      id\n      name\n      email\n      profile {\n        id\n        bio\n      }\n    }\n  }\n": types.MeDocument,
 };
@@ -40,7 +41,11 @@ export function gql(source: "\n  mutation Login($loginEmail: String!, $loginPass
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation Mutation($email: String!, $password: String!, $name: String) {\n  signup(email: $email, password: $password, name: $name) {\n    token\n  }\n}\n"): (typeof documents)["\n  mutation Mutation($email: String!, $password: String!, $name: String) {\n  signup(email: $email, password: $password, name: $name) {\n    token\n  }\n}\n"];
+export function gql(source: "\n  mutation Signup($email: String!, $password: String!, $name: String) {\n  signup(email: $email, password: $password, name: $name) {\n    token\n  }\n}\n"): (typeof documents)["\n  mutation Signup($email: String!, $password: String!, $name: String) {\n  signup(email: $email, password: $password, name: $name) {\n    token\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation CreateInfant( $bio: String, $username: String!, $firstname: String, $paternal: String, $maternal: String, $gender: String, $birthday: DateTime, $country: String, $department: String, $province: String, $distrite: String, $authorization: Boolean!, $postal: String) {\n  createInfant(\n    bio: $bio,\n    username: $username,\n    firstname: $firstname,\n    paternal: $paternal,\n    maternal: $maternal,\n    gender: $gender,\n    birthday: $birthday,\n    country: $country,\n    department: $department,\n    province: $province,\n    distrite: $distrite,\n    authorization: $authorization,\n    postal: $postal\n    ) {\n    id\n  }\n}\n"): (typeof documents)["\nmutation CreateInfant( $bio: String, $username: String!, $firstname: String, $paternal: String, $maternal: String, $gender: String, $birthday: DateTime, $country: String, $department: String, $province: String, $distrite: String, $authorization: Boolean!, $postal: String) {\n  createInfant(\n    bio: $bio,\n    username: $username,\n    firstname: $firstname,\n    paternal: $paternal,\n    maternal: $maternal,\n    gender: $gender,\n    birthday: $birthday,\n    country: $country,\n    department: $department,\n    province: $province,\n    distrite: $distrite,\n    authorization: $authorization,\n    postal: $postal\n    ) {\n    id\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

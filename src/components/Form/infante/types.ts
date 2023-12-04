@@ -1,9 +1,11 @@
 export type FormData = {
+  bio: string
   authorization: boolean
-  firstName: string
+  firstname: string
   paternal: string
   maternal: string
-  date: string
+  gender: string
+  birthday: Date | null
   country: string
   department: string
   province: string
