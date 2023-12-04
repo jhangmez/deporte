@@ -3,7 +3,6 @@
 import Forget from './forget'
 import Login from './login'
 import Register from './register'
-import Infant from './infant'
 import Infante from './infante'
 
 export default function Form({
