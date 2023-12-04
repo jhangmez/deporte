@@ -30,7 +30,9 @@ export default function Page({ params }: PageProps) {
         <PerfilInfant slug={params.slug} />
       </section>
 
-      <Footer />
+      <div className='bg-light-surface dark:bg-dark-surface'>
+        <Footer />
+      </div>
     </main>
   )
 }

@@ -58,7 +58,9 @@ export default function App() {
           </div>
         )}
       </section>
-      <Footer />
+      <div className='bg-light-surface dark:bg-dark-surface'>
+        <Footer />
+      </div>
     </main>
   )
 }

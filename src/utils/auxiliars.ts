@@ -29,3 +29,8 @@ export const calculateAge = (birthdate: Date | null): number => {
 export const parseStringToDate = (str: string): Date | null => {
   return str ? new Date(`${str}T00:00:00Z`) : null
 }
+
+export const formatMaternal = (maternal: string | null | undefined): string => {
+  if (!maternal) return ''
+  return maternal.charAt(0).toUpperCase() + '.'
+}
