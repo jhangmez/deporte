@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import toast from 'react-hot-toast'
 import Link from 'next/link'
@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation'
 import { Icon } from '@iconify/react'
 import { Checkbox } from '@nextui-org/checkbox'
 import { Input } from '@nextui-org/input'
+import { Chip } from '@nextui-org/chip'
+import { Divider } from '@nextui-org/divider'
 
 export default function Form({ type }: { type: 'login' | 'register' }) {
   const [loading, setLoading] = useState(false)
@@ -164,8 +166,6 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
         </Checkbox>
       )}
 
-      <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
-
       <div className='w-fill flex-col justify-center gap-5 items-center inline-flex'>
         <button
           disabled={loading}
@@ -188,7 +188,34 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
             </div>
           )}
         </button>
-
+        {type === 'login' ? (
+          <p className='text-center text-sm text-light-onSurface dark:text-dark-onSurface'>
+            No tienes cuenta? {''}
+            <Link
+              href='/register'
+              className='font-semibold text-light-primary dark:text-dark-primary'
+            >
+              Crear una cuenta
+            </Link>{' '}
+            gratis.
+          </p>
+        ) : (
+          <p className='text-center text-sm text-light-onSurface dark:text-dark-onSurface'>
+            Ya tienes una cuenta?{' '}
+            <Link
+              href='/login'
+              className='font-semibold text-light-primary dark:text-dark-primary'
+            >
+              Ingresar
+            </Link>
+          </p>
+        )}
+        <div className='relative w-full'>
+          <Divider className='mt-2 bg-light-onSurface dark:bg-dark-onSurface' />
+          <p className='absolute left-1/2 -top-1 transform -translate-x-1/2 bg-light-surface dark:bg-dark-surface text-light-onSurface dark:text-dark-onSurface'>
+            o
+          </p>
+        </div>
         <button
           className={`${
             loading
@@ -214,31 +241,16 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
             </div>
           )}
         </button>
-        {/* <Filledbutton label='Ingresar' /> */}
       </div>
 
-      {type === 'login' ? (
-        <p className='text-center text-sm text-light-onSurface dark:text-dark-onSurface'>
-          No tienes cuenta? {''}
-          <Link
-            href='/register'
-            className='font-semibold text-light-primary dark:text-dark-primary'
-          >
-            Crear una cuenta
-          </Link>{' '}
-          gratis.
-        </p>
-      ) : (
-        <p className='text-center text-sm text-light-onSurface dark:text-dark-onSurface'>
-          Ya tienes una cuenta?{' '}
-          <Link
-            href='/login'
-            className='font-semibold text-light-primary dark:text-dark-primary'
-          >
-            Ingresar
-          </Link>
-        </p>
-      )}
+      <div className='w-full flex justify-center'>
+        <Chip
+          className='bg-light-tertiaryContainer darl:bg-dark-tertiaryContainer'
+          startContent={<Icon icon='zondicons:exclamation-solid' />}
+        >
+          Vuelva a enviar el formulario.
+        </Chip>
+      </div>
     </form>
   )
 }
