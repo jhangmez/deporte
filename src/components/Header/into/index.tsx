@@ -167,7 +167,9 @@ export default function Header() {
                   <p className='font-semibold'>Ingresado como</p>
                   <p className='font-semibold'>{data?.me?.email}</p>
                 </DropdownItem>
-                <DropdownItem key='profile'>Perfil</DropdownItem>
+                <DropdownItem key='profile' href={`/user/${data?.me?.id}`}>
+                  Perfil
+                </DropdownItem>
                 <DropdownItem key='configurations'>
                   Configuraciones
                 </DropdownItem>

@@ -44,3 +44,52 @@ query InfantByUsername($username: String!) {
   }
 }
 `)
+
+export const getUser = gql(`
+query GetUser($userId: String!) {
+  getUser(UserInput:{
+    id:$userId
+  }) {
+    bio
+    username
+    firstname
+    paternal
+    maternal
+  }
+ allInfantsByUser(UserInput:{
+    id:$userId
+  }) {
+    profileinfant {
+      username
+      firstname
+      paternal
+      maternal
+      gender
+      country
+      department
+    }
+  }
+}
+`)
+
+export const InfantsByUser = gql(`
+query InfantsByUser {
+  InfantsByUser {
+    profileinfant {
+      bio
+      id
+      username
+      firstname
+      paternal
+      maternal
+      birthday
+      gender
+      country
+      department
+      province
+      distrite
+      postal
+      authorization
+    }
+  }
+}`)
